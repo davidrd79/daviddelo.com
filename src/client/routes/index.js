@@ -1,26 +1,15 @@
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 
-const Testing = () => {
-  return (
-    <div id="homepage">
-      <h1>Homepage</h1>
-    </div>
-  );
-};
-
-const Foo = () => {
-  return (
-    <div id="foo">
-      <h1>Foo</h1>
-    </div>
-  );
-};
+import Application from '../components/Application';
+import HomePage from '../components/HomePage';
+import AboutPage from '../components/AboutPage';
 
 export default function routes() {
   return (
-    <Route name="homepage" path="/" component={Testing}>
-      <Route name="foo" path="foo" component={Foo} />
+    <Route name="application" path="/" component={Application}>
+      <IndexRoute name="homepage" component={HomePage} />
+      <Route name="about" path="about" component={AboutPage} />
     </Route>
   );
 }
