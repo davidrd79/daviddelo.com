@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import classNames from 'classnames';
 
-import styles from './styles.scss';
+//import styles from './styles.scss';
 
 const Navigation = () => {
   const navClasses = classNames('navigation');
