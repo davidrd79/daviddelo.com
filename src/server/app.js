@@ -22,11 +22,11 @@ const createApp = () => {
   // GZIP
   app.use(compression());
 
-  // Redirect unsupported browsers
-  app.use(unsupportedUserAgent({ redirectUrl: '/browser.html'} ));
-
   // Static file setup
   app.use(express.static(path.resolve(__dirname, '..', 'public')));
+
+  // Redirect unsupported browsers
+  app.use(unsupportedUserAgent({ redirectUrl: '/browser.html' }));
 
   const appRoutes = [
     matchRoutes,
@@ -45,9 +45,9 @@ const createApp = () => {
   app.use(errorHandler());
 
   return app;
-}
+};
 
-const listener = createApp().listen(8888, function() {
+const listener = createApp().listen(8888, () => {
   const host = listener.address().address;
   const port = listener.address().port;
 

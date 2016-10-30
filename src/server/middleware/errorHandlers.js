@@ -8,7 +8,7 @@ export function notFound(req, res, next) {
 }
 
 export function errorHandler() {
-  return function(err, req, res, next) {
+  return (err, req, res, next) => { // eslint-disable-line consistent-return
     if (!err) {
       return next(err, req, res);
     }

@@ -1,11 +1,8 @@
 import React from 'react';
 
-const AboutPage = (props) => {
-  return (
-    <section>
-      About!
-    </section>
-  );
-};
+const AboutPage = () =>
+  <section>
+    About!
+  </section>;
 
 export default AboutPage;
