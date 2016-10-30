@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Navigation from '../Navigation';
 import Footer from '../Footer';
@@ -11,7 +11,7 @@ const Application = props =>
   </div>;
 
 Application.propTypes = {
-  children: React.PropTypes.element.isRequired
+  children: PropTypes.element.isRequired
 };
 
 export default Application;
