@@ -1,12 +1,16 @@
-import path from 'path';
-import express from 'express';
 import compression from 'compression';
-import cookieParser from 'cookie-parser';
+import express from 'express';
+import path from 'path';
+
+// Internal
 import unsupportedUserAgent from './middleware/unsupportedUserAgent';
+import { errorHandler, notFound } from './middleware/errorHandlers';
+
+/*
 import routes from './routes';
 import matchRoutes from './middleware/matchRoutes';
-import { errorHandler, notFound } from './middleware/errorHandlers';
 import attachApp from './middleware/attachApp';
+*/
 
 const createApp = () => {
   const app = express();
@@ -17,7 +21,7 @@ const createApp = () => {
   app.disable('x-powered-by');
 
   // Parse cookies we care about
-  app.use(cookieParser());
+  // app.use(cookieParser());
 
   // GZIP
   app.use(compression());
@@ -28,15 +32,17 @@ const createApp = () => {
   // Redirect unsupported browsers
   app.use(unsupportedUserAgent({ redirectUrl: '/browser.html' }));
 
+  /*
   const appRoutes = [
     matchRoutes,
     attachApp(),
     routes()
   ];
+  */
 
   // Routes for the main React app
-  app.use('/about', appRoutes);
-  app.use('/', appRoutes);
+  // app.use('/about', appRoutes);
+  // app.use('/', appRoutes);
 
   // Unmatched routes
   app.use(notFound);
@@ -47,9 +53,7 @@ const createApp = () => {
   return app;
 };
 
-const listener = createApp().listen(8888, () => {
-  const host = listener.address().address;
-  const port = listener.address().port;
-
+const listener = createApp().listen(8080, () => {
+  const { host, port } = listener.address();
   console.log('Server listening at http://%s:%s', host, port);  // eslint-disable-line
 });

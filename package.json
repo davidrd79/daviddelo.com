@@ -18,6 +18,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "classnames": "^2.2.5",
+    "compression": "^1.7.1",
     "express": "^4.16.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
