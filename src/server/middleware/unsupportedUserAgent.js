@@ -4,7 +4,7 @@ const UNSUPPORTED = [
 ];
 
 export default function unsupportedUserAgent({ redirectUrl } = {}) {
-  return (req, res, next) => {  // eslint-disable-line consistent-return
+  return (req, res, next) => { // eslint-disable-line consistent-return
     if (!redirectUrl) {
       return next(new Error('unsupportedUserAgent middleware requires redirectUrl param'));
     }
@@ -14,6 +14,6 @@ export default function unsupportedUserAgent({ redirectUrl } = {}) {
       return res.redirect(redirectUrl);
     }
 
-    next();   // eslint-disable-line consistent-return
+    next();
   };
 }

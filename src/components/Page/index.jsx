@@ -3,15 +3,17 @@ import React, { PropTypes } from 'react';
 import Navigation from '../Navigation';
 import Footer from '../Footer';
 
-const Application = props =>
-  <div>
-    <Navigation />
-    {props.children}
-    <Footer />
-  </div>;
+const Page = props =>
+  (
+    [
+      <Navigation />,
+      props.children,
+      <Footer />
+    ]
+  );
 
-Application.propTypes = {
+Page.propTypes = {
   children: PropTypes.element.isRequired
 };
 
-export default Application;
+export default Page;

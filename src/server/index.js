@@ -3,25 +3,18 @@ import express from 'express';
 import path from 'path';
 
 // Internal
+import ROUTES from './routes';
+import serverSideRenderer from './middleware/serverSideRenderer';
 import unsupportedUserAgent from './middleware/unsupportedUserAgent';
 import { errorHandler, notFound } from './middleware/errorHandlers';
-
-/*
-import routes from './routes';
-import matchRoutes from './middleware/matchRoutes';
-import attachApp from './middleware/attachApp';
-*/
 
 const createApp = () => {
   const app = express();
 
-  app.locals.title = 'daviddelo.com';
-  app.locals.email = 'dave@daviddelo.com';
+  // app.locals.title = 'daviddelo.com';
+  // app.locals.email = 'dave@daviddelo.com';
 
   app.disable('x-powered-by');
-
-  // Parse cookies we care about
-  // app.use(cookieParser());
 
   // GZIP
   app.use(compression());
@@ -32,17 +25,10 @@ const createApp = () => {
   // Redirect unsupported browsers
   app.use(unsupportedUserAgent({ redirectUrl: '/browser.html' }));
 
-  /*
-  const appRoutes = [
-    matchRoutes,
-    attachApp(),
-    routes()
-  ];
-  */
-
-  // Routes for the main React app
-  // app.use('/about', appRoutes);
-  // app.use('/', appRoutes);
+  // Routes
+  app.use(ROUTES.resume.path, serverSideRenderer('resume'));
+  app.use(ROUTES.about.path, serverSideRenderer('about'));
+  app.use(ROUTES.home.path, serverSideRenderer('home'));
 
   // Unmatched routes
   app.use(notFound);

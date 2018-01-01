@@ -1,8 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
 import classNames from 'classnames';
-
-//import styles from './styles.scss';
 
 const Navigation = () => {
   const navClasses = classNames('navigation');
@@ -11,10 +8,13 @@ const Navigation = () => {
     <nav className={navClasses}>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <a href="/">Home</a>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <a href="/about">About</a>
+        </li>
+        <li>
+          <a href="/resume">Resume</a>
         </li>
       </ul>
     </nav>
